@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalog
+    build:
+      context: .
+      dockerfile: src/Catalog/Catolog.Api/Dockerfile
+    ports: 
+      - "8000:80"
+    depends_on: 
+      - catalogdb
+  catalogdb:
+    image: mongo
+    ports: 
+      - "27017:27017"
+    
